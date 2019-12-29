@@ -1,0 +1,25 @@
+{
+  "name": "liri-node-app",
+  "version": "1.0.0",
+  "description": "liri search",
+  "main": "liri.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lewis00001/liri-node-app.git"
+  },
+  "author": "Lewis Lockhart",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lewis00001/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/lewis00001/liri-node-app#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "dotenv": "^8.2.0",
+    "inquirer": "^7.0.1",
+    "moment": "^2.24.0"
+  }
+}

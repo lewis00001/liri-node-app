@@ -1,0 +1,6 @@
+Time,qURL,Response,Error
+2019-12-28T17:02:10-07:00,https://rest.bandsintown.com/artists/sgsdfgsfdg/events?app_id=codingbootcamp,,Error: Request failed with status code 404
+2019-12-28T17:02:46-07:00,https://rest.bandsintown.com/artists/jessej/events?app_id=codingbootcamp,[object Object],TypeError: Cannot read property 'venue' of undefined
+2019-12-28T17:03:36-07:00,https://rest.bandsintown.com/artists/I want some money/events?app_id=codingbootcamp,,Error: Request failed with status code 404
+2019-12-28T17:29:08-07:00,https://rest.bandsintown.com/artists//events?app_id=codingbootcamp,,Error: Request failed with status code 400
+2019-12-28T17:43:16-07:00,http://www.omdbapi.com/?t=&y=&plot=short&tomatoes=true&apikey=trilogy,[object Object],ReferenceError: movieThis is not defined
