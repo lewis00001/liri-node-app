@@ -4,3 +4,17 @@ Time,qURL,Response,Error
 2019-12-28T17:03:36-07:00,https://rest.bandsintown.com/artists/I want some money/events?app_id=codingbootcamp,,Error: Request failed with status code 404
 2019-12-28T17:29:08-07:00,https://rest.bandsintown.com/artists//events?app_id=codingbootcamp,,Error: Request failed with status code 400
 2019-12-28T17:43:16-07:00,http://www.omdbapi.com/?t=&y=&plot=short&tomatoes=true&apikey=trilogy,[object Object],ReferenceError: movieThis is not defined
+2019-12-28T17:51:40-07:00,https://rest.bandsintown.com/artists/arianna grande/events?app_id=codingbootcamp,[object Object],TypeError: Cannot read property 'venue' of undefined
+2019-12-28T18:11:30-07:00,https://rest.bandsintown.com/artists/arianna grande/events?app_id=codingbootcamp,[object Object],TypeError: Cannot read property 'venue' of undefined
+2019-12-28T18:14:08-07:00,https://rest.bandsintown.com/artists/arianna grande/events?app_id=codingbootcamp,[object Object],TypeError: Cannot read property 'venue' of undefined
+2019-12-28T18:14:35-07:00,https://rest.bandsintown.com/artists/arianna-grande/events?app_id=codingbootcamp,,Error: Request failed with status code 404
+2019-12-28T18:14:59-07:00,https://rest.bandsintown.com/artists/twentyone pilots/events?app_id=codingbootcamp,,Error: Request failed with status code 404
+2019-12-28T18:16:27-07:00,https://rest.bandsintown.com/artists/christina aguilera/events?app_id=codingbootcamp,[object Object],TypeError: Cannot read property 'venue' of undefined
+2019-12-28T18:19:37-07:00,https://rest.bandsintown.com/artists/jim/events?app_id=codingbootcamp,[object Object],TypeError: Cannot read property 'venue' of undefined
+2019-12-28T18:21:01-07:00,https://rest.bandsintown.com/artists/jim/events?app_id=codingbootcamp,[object Object],TypeError: Cannot read property 'venue' of undefined
+2019-12-28T18:22:50-07:00,https://rest.bandsintown.com/artists/jim/events?app_id=codingbootcamp,[object Object],TypeError: Cannot read property 'venue' of undefined
+2019-12-28T18:23:38-07:00,https://rest.bandsintown.com/artists/jim/events?app_id=codingbootcamp,[object Object],TypeError: Cannot read property 'venue' of undefined
+2019-12-28T18:27:59-07:00,https://rest.bandsintown.com/artists/michael jackson/events?app_id=codingbootcamp,[object Object],TypeError: Cannot read property 'venue' of undefined
+2019-12-28T18:28:46-07:00,https://rest.bandsintown.com/artists/michael jackson/events?app_id=codingbootcamp,[object Object],TypeError: Cannot read property 'venue' of undefined
+2019-12-28T18:30:51-07:00,https://rest.bandsintown.com/artists/michael jackson/events?app_id=codingbootcamp,[object Object],TypeError: Cannot read property 'venue' of undefined
+2019-12-28T18:36:22-07:00,http://www.omdbapi333.com/?t=300&y=&plot=short&tomatoes=true&apikey=trilogy,,Error: getaddrinfo ENOTFOUND www.omdbapi333.com

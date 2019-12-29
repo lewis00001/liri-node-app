@@ -62,24 +62,27 @@ function displayConcertInfo(c_inputParam) {
         function (response) {
             _response = response;
             let numResults = 5;
-            console.log("Here are the next " + numResults + " events:");
-            for (let i = 0; i < numResults; i++) {
-                if (response.data[i].venue != undefined) {
-                    console.log("- - - - - - - - - - - - - - - - - - - - - - - - -");
-                    console.log("- Event: " + parseInt(i + 1));
-                    console.log("- Veunue: " + response.data[i].venue.name);
-                    console.log("- Location: " + response.data[i].venue.city + ", " +
-                        response.data[i].venue.country);
-                    let date_time = moment(response.data[i].datetime);
-                    console.log("- Date/Time: " + date_time.format("dddd, MMMM Do YYYY"));
-                } else {
-                    console.log("Return: no results.");
+            if (response.data.length < numResults) {
+                numResults = response.data.length;
+            }
+            if (response.data[0].venue != undefined) {
+                console.log("Here's the next " + numResults + " event(s):");
+                for (let i = 0; i < numResults; i++) {
+                    if (response.data[i].venue != undefined) {
+                        console.log("- - - - - - - - - - - - - - - - - - - - - - - - -");
+                        console.log("- Event: " + parseInt(i + 1));
+                        console.log("- Veunue: " + response.data[i].venue.name);
+                        console.log("- Location: " + response.data[i].venue.city + ", " +
+                            response.data[i].venue.country);
+                        let date_time = moment(response.data[i].datetime);
+                        console.log("- Date/Time: " + date_time.format("dddd, MMMM Do YYYY"));
+                    }
                 }
             }
         }
     ).catch(function (error) {
         logErrorData(queryUrl, _response, error);
-        console.log("Error: no results.");
+        console.log("No results.");
     });
 }
 
@@ -102,11 +105,11 @@ function displayMovieInfo(m_inputParam) {
     let queryUrl = "http://www.omdbapi.com/?t=" + m_inputParam + "&y=&plot=short&tomatoes=true&apikey=trilogy";
     let _response = "";
     axios.get(queryUrl).then(
-        function(response) {
+        function (response) {
             _response = response;
             if (response.data.Title != undefined) {
                 if (m_inputParam === "Mr. Nobody") {
-                    console.log("* You didn't enter anything, so here's Mr. Nobody. *");
+                    console.log("* We couldn't find anything based on what you entered, so here's Mr. Nobody. *");
                 }
                 console.log("Title: " + response.data.Title);
                 console.log("Year: " + response.data.Year);
@@ -116,14 +119,13 @@ function displayMovieInfo(m_inputParam) {
                 console.log("Plot: " + response.data.Plot);
                 console.log("Actors: " + response.data.Actors);
                 console.log("RottenTomatoes: " + response.data.tomatoRating);
-            } 
-            else {
+            } else {
                 displayMovieInfo("Mr. Nobody");
             }
-        } 
+        }
     ).catch(function (error) {
         logErrorData(queryUrl, _response, error);
-        console.log("Error: no results.");
+        console.log("No results.");
     });
 }
 
