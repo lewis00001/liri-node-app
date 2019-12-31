@@ -31,6 +31,7 @@ function processUserInputs() {
                 type: 'input',
                 message: "Search: ",
                 name: "_inputParameter",
+                // causes second prompt to be skipped if do-what-it-says is selected
                 when: (name) => name._optionSelected != 'do-what-it-says'
             }
         ])
@@ -38,6 +39,7 @@ function processUserInputs() {
             _optionSelected,
             _inputParameter
         }) => {
+            // logs the search information to the log.txt file
             let timeStamp = moment().format();
             fs.appendFile("log.txt", timeStamp + " option: " + _optionSelected + " - input: " + _inputParameter + "\n***\n",
                 function (error) {
@@ -45,6 +47,7 @@ function processUserInputs() {
                         console.log(error);
                     }
                 });
+            // calls the approprate function based on selection
             switch (_optionSelected) {
                 case 'concert-this':
                     displayConcertInfo(_inputParameter);
@@ -65,13 +68,16 @@ function processUserInputs() {
 
 }
 
+// calls the bandsintown api
 function displayConcertInfo(c_inputParam) {
     let queryUrl = "https://rest.bandsintown.com/artists/" + c_inputParam + "/events?app_id=codingbootcamp";
     let _response = "";
     axios.get(queryUrl).then(
         function (response) {
+            // sets the response to be used in the catch
             _response = response;
             let numResults = 5;
+            // if the response is less then the let length, numResults is updated
             if (response.data.length < numResults) {
                 numResults = response.data.length;
             }
@@ -98,8 +104,10 @@ function displayConcertInfo(c_inputParam) {
     });
 }
 
+// calls the spotify api
 function displaySongInfo(s_inputParam) {
     let _response = "";
+    // if nothing is added, adds The Sign
     if (s_inputParam.trim() === "") {
         s_inputParam = "The Sign";
     }
@@ -109,11 +117,14 @@ function displaySongInfo(s_inputParam) {
             query: s_inputParam
         })
         .then(function (response) {
+            // sets the response to be used in the catch
             _response = response;
             let numResults = 5;
+            // if the response is less then the let length, numResults is updated
             if (response.tracks.items.length < numResults) {
                 numResults = response.tracks.items.length;
             }
+            // informs user about the auto search
             if (s_inputParam === "The Sign") {
                 console.log("* We couldn't find anything based on what you entered, so here's results for 'The Sign' *");
             }
@@ -137,13 +148,16 @@ function displaySongInfo(s_inputParam) {
         });
 }
 
+// calls the ombb api
 function displayMovieInfo(m_inputParam) {
     let queryUrl = "http://www.omdbapi.com/?t=" + m_inputParam + "&y=&plot=short&tomatoes=true&apikey=trilogy";
     let _response = "";
     axios.get(queryUrl).then(
         function (response) {
+            // sets the response to be used in the catch
             _response = response;
             if (response.data.Title != undefined) {
+                // informs user about the auto search
                 if (m_inputParam === "Mr. Nobody") {
                     console.log("* We couldn't find anything based on what you entered, so here's Mr. Nobody. *");
                 }
@@ -169,6 +183,7 @@ function displayMovieInfo(m_inputParam) {
 
 function displaySomeInfo() {
     fs.readFile('random.txt', 'utf8', function (error, content) {
+        // makes an array from random.txt data
         let song = content.split(','); 
         console.log("This option calls spotify-this-song and searches for 'I want it that way'.");    
         displaySongInfo(song[1]);

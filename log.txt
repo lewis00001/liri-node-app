@@ -10,3 +10,11 @@
 ***
 2019-12-30T19:17:05-07:00 option: do-what-it-says - input: undefined
 ***
+2019-12-30T19:51:46-07:00 option: concert-this - input: alabama
+***
+2019-12-30T19:51:54-07:00 option: spotify-this-song - input: alabama
+***
+2019-12-30T19:52:04-07:00 option: movie-this - input: alabama
+***
+2019-12-30T19:52:11-07:00 option: do-what-it-says - input: undefined
+***
