@@ -18,3 +18,10 @@ Time,qURL,Response,Error
 2019-12-28T18:28:46-07:00,https://rest.bandsintown.com/artists/michael jackson/events?app_id=codingbootcamp,[object Object],TypeError: Cannot read property 'venue' of undefined
 2019-12-28T18:30:51-07:00,https://rest.bandsintown.com/artists/michael jackson/events?app_id=codingbootcamp,[object Object],TypeError: Cannot read property 'venue' of undefined
 2019-12-28T18:36:22-07:00,http://www.omdbapi333.com/?t=300&y=&plot=short&tomatoes=true&apikey=trilogy,,Error: getaddrinfo ENOTFOUND www.omdbapi333.com
+2019-12-29T17:22:35-07:00,https://rest.bandsintown.com/artists//events?app_id=codingbootcamp,,Error: Request failed with status code 400
+2019-12-29T18:29:30-07:00,sadfa,,StatusCodeError: 400 - {"error":{"status":400,"message":"Bad search type field tracker"}}
+2019-12-29T18:30:38-07:00,https://rest.bandsintown.com/artists//events?app_id=codingbootcamp,,Error: Request failed with status code 400
+2019-12-29T18:32:18-07:00,https://rest.bandsintown.com/artists/jesse j/events?app_id=codingbootcamp,[object Object],TypeError: Cannot read property 'venue' of undefined
+2019-12-29T18:36:32-07:00,https://rest.bandsintown.com/artists//events?app_id=codingbootcamp,,Error: Request failed with status code 400
+2019-12-30T18:39:42-07:00,https://rest.bandsintown.com/artists/undefined/events?app_id=codingbootcamp,[object Object],TypeError: Cannot read property 'venue' of undefined
+2019-12-30T18:53:09-07:00,https://rest.bandsintown.com/artists//events?app_id=codingbootcamp,,Error: Request failed with status code 400

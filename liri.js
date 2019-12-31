@@ -1,8 +1,10 @@
 require("dotenv").config();
 
-let keys = require("./keys.js");
+const sKeys = require("./keys.js");
+const Spotify = require('node-spotify-api');
+const spotify = new Spotify(sKeys.spotify);
 const fs = require("fs");
-let moment = require('moment');
+const moment = require('moment');
 const axios = require("axios");
 const inquirer = require("inquirer");
 
@@ -28,13 +30,21 @@ function processUserInputs() {
             {
                 type: 'input',
                 message: "Search: ",
-                name: "_inputParameter"
+                name: "_inputParameter",
+                when: (name) => name._optionSelected != 'do-what-it-says'
             }
         ])
         .then(({
             _optionSelected,
             _inputParameter
         }) => {
+            let timeStamp = moment().format();
+            fs.appendFile("log.txt", timeStamp + " option: " + _optionSelected + " - input: " + _inputParameter + "\n***\n",
+                function (error) {
+                    if (error) {
+                        console.log(error);
+                    }
+                });
             switch (_optionSelected) {
                 case 'concert-this':
                     displayConcertInfo(_inputParameter);
@@ -69,13 +79,15 @@ function displayConcertInfo(c_inputParam) {
                 console.log("Here's the next " + numResults + " event(s):");
                 for (let i = 0; i < numResults; i++) {
                     if (response.data[i].venue != undefined) {
-                        console.log("- - - - - - - - - - - - - - - - - - - - - - - - -");
-                        console.log("- Event: " + parseInt(i + 1));
-                        console.log("- Veunue: " + response.data[i].venue.name);
-                        console.log("- Location: " + response.data[i].venue.city + ", " +
-                            response.data[i].venue.country);
                         let date_time = moment(response.data[i].datetime);
-                        console.log("- Date/Time: " + date_time.format("dddd, MMMM Do YYYY"));
+                        let v_info =
+                            "- - - - - - - - - - - - - - - - - - - - - - - - -" +
+                            "\n- Event: " + parseInt(i + 1) +
+                            "\n- Veunue: " + response.data[i].venue.name +
+                            "\n- Location: " + response.data[i].venue.city + ", " +
+                            response.data[i].venue.country +
+                            "\n- Date/Time: " + date_time.format("dddd, MMMM Do YYYY");
+                        console.log(v_info);
                     }
                 }
             }
@@ -83,6 +95,86 @@ function displayConcertInfo(c_inputParam) {
     ).catch(function (error) {
         logErrorData(queryUrl, _response, error);
         console.log("No results.");
+    });
+}
+
+function displaySongInfo(s_inputParam) {
+    let _response = "";
+    if (s_inputParam.trim() === "") {
+        s_inputParam = "The Sign";
+    }
+    spotify
+        .search({
+            type: 'track',
+            query: s_inputParam
+        })
+        .then(function (response) {
+            _response = response;
+            let numResults = 5;
+            if (response.tracks.items.length < numResults) {
+                numResults = response.tracks.items.length;
+            }
+            if (s_inputParam === "The Sign") {
+                console.log("* We couldn't find anything based on what you entered, so here's results for 'The Sign' *");
+            }
+            if (response.tracks != undefined) {
+                console.log("Here's a list of " + numResults + " possible matche(s):");
+                for (let i = 0; i < numResults; i++) {
+                    let s_info =
+                        "- - - - - - - - - - - - - - - - - - - - - - - - -" +
+                        "\n- Artist(s): " + response.tracks.items[i].artists[0].name +
+                        "\n- Song Name: " + response.tracks.items[i].name +
+                        "\n- Album Name: " + response.tracks.items[i].album.name +
+                        "\n- Preview Link: " + response.tracks.items[i].preview_url;
+
+                    console.log(s_info);
+                }
+            }
+        })
+        .catch(function (error) {
+            logErrorData(s_inputParam, _response, error);
+            console.log("No results.");
+        });
+}
+
+function displayMovieInfo(m_inputParam) {
+    let queryUrl = "http://www.omdbapi.com/?t=" + m_inputParam + "&y=&plot=short&tomatoes=true&apikey=trilogy";
+    let _response = "";
+    axios.get(queryUrl).then(
+        function (response) {
+            _response = response;
+            if (response.data.Title != undefined) {
+                if (m_inputParam === "Mr. Nobody") {
+                    console.log("* We couldn't find anything based on what you entered, so here's Mr. Nobody. *");
+                }
+                let m_info =
+                    "- Title: " + response.data.Title +
+                    "\n- Year: " + response.data.Year +
+                    "\n- imdbRating: " + response.data.imdbRating +
+                    "\n- Country: " + response.data.Country +
+                    "\n- Language: " + response.data.Language +
+                    "\n- Plot: " + response.data.Plot +
+                    "\n- Actors: " + response.data.Actors +
+                    "\n- RottenTomatoes: " + response.data.tomatoRating;
+                console.log(m_info);
+            } else {
+                displayMovieInfo("Mr. Nobody");
+            }
+        }
+    ).catch(function (error) {
+        logErrorData(queryUrl, _response, error);
+        console.log("No results.");
+    });
+}
+
+function displaySomeInfo() {
+    fs.readFile('random.txt', 'utf8', function (error, content) {
+        let song = content.split(','); 
+        console.log("This option calls spotify-this-song and searches for 'I want it that way'.");    
+        displaySongInfo(song[1]);
+        if(error) {
+            logErrorData('null', song, error);
+        }
     });
 }
 
@@ -96,39 +188,3 @@ function logErrorData(e_queryUrl, e_response, e_error) {
             }
         })
 };
-
-function displaySongInfo(_inputParam) {
-    console.log("song function called");
-}
-
-function displayMovieInfo(m_inputParam) {
-    let queryUrl = "http://www.omdbapi.com/?t=" + m_inputParam + "&y=&plot=short&tomatoes=true&apikey=trilogy";
-    let _response = "";
-    axios.get(queryUrl).then(
-        function (response) {
-            _response = response;
-            if (response.data.Title != undefined) {
-                if (m_inputParam === "Mr. Nobody") {
-                    console.log("* We couldn't find anything based on what you entered, so here's Mr. Nobody. *");
-                }
-                console.log("Title: " + response.data.Title);
-                console.log("Year: " + response.data.Year);
-                console.log("imdbRating: " + response.data.imdbRating);
-                console.log("Country: " + response.data.Country);
-                console.log("Language: " + response.data.Language);
-                console.log("Plot: " + response.data.Plot);
-                console.log("Actors: " + response.data.Actors);
-                console.log("RottenTomatoes: " + response.data.tomatoRating);
-            } else {
-                displayMovieInfo("Mr. Nobody");
-            }
-        }
-    ).catch(function (error) {
-        logErrorData(queryUrl, _response, error);
-        console.log("No results.");
-    });
-}
-
-function displaySomeInfo() {
-    console.log("other function called");
-}

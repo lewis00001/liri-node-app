@@ -1,1 +1,12 @@
-see serverLog.csv for errors
+2019-12-30T19:14:04-07:00 option: concert-this - input: tool
+***
+2019-12-30T19:14:12-07:00 option: spotify-this-song - input: the end
+***
+2019-12-30T19:14:26-07:00 option: movie-this - input: the stuff
+***
+2019-12-30T19:14:32-07:00 option: do-what-it-says - input: undefined
+***
+2019-12-30T19:15:23-07:00 option: do-what-it-says - input: undefined
+***
+2019-12-30T19:17:05-07:00 option: do-what-it-says - input: undefined
+***
