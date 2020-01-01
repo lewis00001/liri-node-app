@@ -18,3 +18,15 @@
 ***
 2019-12-30T19:52:11-07:00 option: do-what-it-says - input: undefined
 ***
+2020-01-01T16:24:09-07:00 option: concert-this - input: alabama
+***
+2020-01-01T16:27:22-07:00 option: spotify-this-song - input: the pot
+***
+2020-01-01T16:32:01-07:00 option: movie-this - input: Lucid
+***
+2020-01-01T16:32:29-07:00 option: movie-this - input: War
+***
+2020-01-01T16:35:34-07:00 option: movie-this - input: land before time
+***
+2020-01-01T16:37:51-07:00 option: do-what-it-says - input: undefined
+***
