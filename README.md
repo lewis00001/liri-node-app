@@ -2,8 +2,7 @@
 
 ## General Information
 
-This app is a LIRI. A LIRI is like iPhone's SIRI. However, while SIRI is 
-a Speech Interpretation and Recognition Interface, LIRI is a _Language_ 
+This app is a LIRI. A LIRI is like iPhone's SIRI. However while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a _Language_ 
 Interpretation and Recognition Interface. This is a command line node app 
 that takes in parameters and gives the user back some data for concerts, 
 songs, or movies.
@@ -13,7 +12,7 @@ songs, or movies.
 This app allows the a user to select a function with an inquirer menu in 
 the CLI.
 Options:
-- Concert-this
+- concert-this
 - spotify-this-song
 - movie-this
 - do-what-it-says
