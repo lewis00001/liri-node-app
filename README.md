@@ -23,7 +23,7 @@ Options:
 Once an option is selected, the user will generally be prompted for
 the search criteria.
 
-![search](images/menu-search.PNG)
+![search](images/menu-prompt.PNG)
 
 ### Concert-this
 
